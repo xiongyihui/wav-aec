@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 2.8)
 
 project(wav-aec)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -std=c++11")
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
 add_subdirectory(gflags)
@@ -198,3 +199,5 @@ prepend_path(WEBRTC_SRC webrtc/webrtc ${WEBRTC_SRC_})
 
 add_executable(webrtc-audioproc webrtc-audioproc.cpp ${WEBRTC_SRC})
 target_link_libraries(webrtc-audioproc gflags pthread)
+
+add_library(webrtc-audio-processing ${WEBRTC_SRC})
